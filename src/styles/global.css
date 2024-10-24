@@ -1,0 +1,80 @@
+/* Style the Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background for a clean look */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Branding (Logo or Name) Styling */
+.brand h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    color: #333;
+    margin: 0;
+    transition: color 0.3s ease-in-out;
+}
+
+.brand h1:hover {
+    color: #007bff; /* Blue color on hover */
+}
+
+/* Links Container Styling */
+.links {
+    display: flex;
+    align-items: center;
+}
+
+/* Sign In Button Styling */
+.signIn-btn button {
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.signIn-btn button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Align the Sign In Button to the Right */
+.navbar .links {
+    margin-left: auto;
+}
+
+/* Remove underline from links */
+.brand a {
+    text-decoration: none; /* Removes the underline */
+}
+
+.brand a h1 {
+    display: inline; /* Ensure it displays inline with the link */
+}
+
+/* Register Button Styling */
+.register-btn button {
+    background-color: #28a745; /* Green color for the register button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px; /* Space between Sign In and Register buttons */
+    transition: background-color 0.3s ease-in-out;
+}
+
+.register-btn button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+

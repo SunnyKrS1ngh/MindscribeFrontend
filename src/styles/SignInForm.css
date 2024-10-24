@@ -1,0 +1,55 @@
+/* SignInForm.css */
+.sign-in-container {
+    max-width: 400px; /* Limit the width of the form */
+    margin: 50px auto; /* Center the form */
+    padding: 20px;
+    background-color: #fff; /* White background for the form */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.sign-in-title {
+    text-align: center; /* Center title */
+    font-size: 28px; /* Title font size */
+    margin-bottom: 20px; /* Space below title */
+    color: #333; /* Dark text color */
+}
+
+.input-group {
+    margin-bottom: 15px; /* Space between input fields */
+}
+
+label {
+    display: block; /* Block display for label */
+    margin-bottom: 5px; /* Space below label */
+    color: #555; /* Label color */
+}
+
+input {
+    width: 100%; /* Full width input */
+    padding: 10px; /* Padding inside input */
+    border: 1px solid #ccc; /* Border around input */
+    border-radius: 5px; /* Rounded corners for input */
+    transition: border-color 0.3s; /* Transition for border color */
+}
+
+input:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+.sign-in-btn {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside button */
+    background-color: #007bff; /* Button color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for button */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for button color */
+}
+
+.sign-in-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}

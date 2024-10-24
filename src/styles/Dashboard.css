@@ -1,0 +1,97 @@
+/* Dashboard.css */
+
+.dashboard {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+    background-color: #f9f9f9; /* Light background for contrast */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.greeting {
+    margin-bottom: 30px;
+    color: #333; /* Darker text for readability */
+}
+
+.greeting h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.greeting p {
+    font-size: 1.2rem;
+    color: #555; /* Lighter color for the description */
+}
+
+.dashboard-content {
+    display: flex;
+    justify-content: space-around; /* Space between cards */
+    flex-wrap: wrap; /* Wrap cards if necessary */
+}
+
+.card {
+    background-color: #fff; /* White background for cards */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    flex-basis: 30%; /* Responsive sizing */
+    min-width: 250px; /* Minimum card width */
+}
+
+.card h2 {
+    margin: 0 0 10px;
+}
+
+.card p {
+    color: #777; /* Gray text for card content */
+}
+
+
+/* Dashboard.css */
+
+.button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #4CAF50; /* Green background */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+  }
+  
+  .button:focus {
+    outline: none;
+  }
+  
+  .button-secondary {
+    background-color: #008CBA; /* Blue background for secondary button */
+  }
+  
+  .button-secondary:hover {
+    background-color: #007bb5; /* Darker blue on hover */
+  }
+  
+
+/* Styles for disabled buttons */
+.button:disabled {
+  background-color: #cccccc; /* Gray background for disabled button */
+  cursor: not-allowed;       /* Not allowed cursor */
+  opacity: 0.6;              /* Reduce opacity */
+}
+
+.button-secondary:disabled {
+  background-color: #b5b5b5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

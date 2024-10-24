@@ -1,0 +1,71 @@
+.add-post-container {
+    width: 90%; /* Responsive width */
+    max-width: 500px; /* Max width for larger screens */
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Light background */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #333; /* Darker text color */
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500; /* Slightly bolder */
+    color: #555; /* Soft color for labels */
+  }
+  
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #007bff; /* Blue border on focus */
+  }
+  
+  textarea {
+    resize: none; /* Disable resizing for textarea */
+    min-height: 100px; /* Minimum height for textarea */
+  }
+  
+  .privacy-toggle {
+    display: flex;
+    align-items: center;
+  }
+  
+  .privacy-toggle input {
+    margin-right: 10px; /* Space between checkbox and label */
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Primary blue color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  

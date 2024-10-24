@@ -1,0 +1,29 @@
+/* LandingPage.css */
+.landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full height of the viewport */
+    background: linear-gradient(to bottom right, #f0f4f8, #cce7ff); /* Soft gradient background */
+    text-align: center;
+    padding: 20px;
+}
+
+.landing-title {
+    font-size: 48px; /* Large font size for title */
+    font-weight: bold;
+    color: #333; /* Dark text color */
+    margin-bottom: 10px; /* Space below title */
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.landing-title:hover {
+    color: #007bff; /* Change color on hover */
+}
+
+.landing-slogan {
+    font-size: 24px; /* Medium font size for slogan */
+    color: #555; /* Slightly lighter text color */
+    font-style: italic; /* Italicize the slogan */
+}

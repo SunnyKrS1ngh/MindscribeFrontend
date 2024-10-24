@@ -1,0 +1,59 @@
+/* DashboardNavbar.css */
+.dashboard-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* Light background for a clean look */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .menu-button {
+    margin-right: auto;
+    color: white;
+  }
+  
+  .drawer-content {
+    width: 250px;
+    padding: 20px;
+  }
+  
+  .drawer-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .profile-button {
+    width: 80%;
+    margin: auto;
+  }
+
+
+.logout-container {
+  margin-left: auto; /* Push the logout button to the right */
+}
+
+.logout-button {
+  margin-left: 20px; /* Space between the menu and logout button */
+  border-radius: 20px; /* Round corners for aesthetic appeal */
+}
+
+.logout-button:hover {
+  background-color: #f02323; /* Light red background on hover */
+}
+  
+/* Back Button Styling */
+.back-button {
+  margin-right: 10px; /* Space between back button and menu */
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover {
+  color: #007bff;
+}
