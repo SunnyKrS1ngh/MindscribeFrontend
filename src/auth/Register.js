@@ -28,7 +28,7 @@ const Register = () => {
             
           };
       
-          fetch('/register', {
+          fetch('https://mindscribebackend-tzvh.onrender.com/register', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(userData)

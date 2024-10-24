@@ -8,7 +8,7 @@ import LoadingSpinner from '../misc/loading';
 const BlogView = () => {
     const {id} = useParams();
     //console.log(id);
-    const {data,loading,error} = useFetch('/postpriv/'+id);
+    const {data,loading,error} = useFetch('https://mindscribebackend-tzvh.onrender.com/postpriv/'+id);
     console.log(data);
   return (
     <div>

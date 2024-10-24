@@ -5,7 +5,7 @@ const BlogList = ({blogs}) => {
    const handleDelete=(id)=>{
     
 
-    fetch('http://localhost:8000/blogs/'+id,{
+    fetch('https://mindscribebackend-tzvh.onrender.com/blogs/'+id,{
         method:'DELETE'
     }).then(()=>{
         console.log('blog deleted');

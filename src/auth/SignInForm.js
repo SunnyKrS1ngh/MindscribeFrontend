@@ -38,7 +38,7 @@ const SignInForm = () => {
 
         const user = {username,password};
         
-        fetch('/admin', {
+        fetch('https://mindscribebackend-tzvh.onrender.com/admin', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(user)

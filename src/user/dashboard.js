@@ -9,7 +9,7 @@ import LoadingSpinner from '../misc/loading';
 const Dashboard = () => {
     const { user } = useParams(); // Access user data from context
 
-    const {data,loading,error} = useFetch('/dashboard');
+    const {data,loading,error} = useFetch('https://mindscribebackend-tzvh.onrender.com/dashboard');
     const [showData, setShowData] = useState(null);
     const [disabledButton, setDisabledButton] = useState('latest'); // Set initial disabled button (latest or my posts)
     const hist = useHistory();
@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     const handleDelete = (id) => {
         console.log(id);
-        fetch('/delete_post/' + id, {
+        fetch('https://mindscribebackend-tzvh.onrender.com/delete_post/' + id, {
             method: 'DELETE',
             headers: { "Content-Type": "application/json" },
         }).then(res => {

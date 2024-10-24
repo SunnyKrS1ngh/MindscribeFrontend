@@ -14,7 +14,7 @@ const BlogCreate = () => {
         
         setLoading(true);
 
-        fetch('http://localhost:8000/blogs',{
+        fetch('https://mindscribebackend-tzvh.onrender.com/blogs',{
             method:'POST',
             headers:{"Content-type":"applications/json"},
             body: JSON.stringify(blog)

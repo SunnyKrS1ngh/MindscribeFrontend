@@ -19,7 +19,7 @@ const AddPost = () => {
       private: isPrivate,
     };
 
-    fetch('/add_post', {
+    fetch('https://mindscribebackend-tzvh.onrender.com/add_post', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(postData)

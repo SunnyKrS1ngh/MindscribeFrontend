@@ -21,7 +21,7 @@ const EditForm = () => {
             body
           };
       
-          fetch('/edit_post/'+blog._id, {
+          fetch('https://mindscribebackend-tzvh.onrender.com/edit_post/'+blog._id, {
             method: 'PUT',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(postData)

@@ -27,7 +27,7 @@ const DashboardNavbar = ({ user }) => {
 
   // Handle Logout
   const onLogout = () => {
-    fetch('/logout', { method: 'GET' }) // Ensure credentials are included if necessary
+    fetch('https://mindscribebackend-tzvh.onrender.com/logout', { method: 'GET' }) // Ensure credentials are included if necessary
       .then(response => {
         if (response.ok) {
           localStorage.removeItem('token');
