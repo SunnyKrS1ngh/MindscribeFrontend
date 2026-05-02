@@ -1,11 +1,10 @@
-import { Link, useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { apiFetch } from "./api";
 
 const BlogList = ({blogs}) => {
-    const hist = useHistory();
    const handleDelete=(id)=>{
     
-
-    fetch('https://mindscribebackend-tzvh.onrender.com/blogs/'+id,{
+    apiFetch('/blogs/'+id,{
         method:'DELETE'
     }).then(()=>{
         console.log('blog deleted');

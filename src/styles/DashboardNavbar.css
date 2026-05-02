@@ -1,59 +1,132 @@
-/* DashboardNavbar.css */
 .dashboard-navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f8f9fa; /* Light background for a clean look */
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    background: linear-gradient(135deg, #1e1b4b, #312e81);
+    padding: 12px 24px;
     position: sticky;
     top: 0;
     z-index: 1000;
-  }
-  
-  .menu-button {
-    margin-right: auto;
+    box-shadow: 0 4px 20px rgba(30, 27, 75, 0.3);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu-button {
+    color: white !important;
+}
+
+.navbar-brand {
+    text-decoration: none;
+}
+
+.brand-text {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #c4b5fd, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--gradient);
     color: white;
-  }
-  
-  .drawer-content {
-    width: 250px;
-    padding: 20px;
-  }
-  
-  .drawer-footer {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .profile-button {
-    width: 80%;
-    margin: auto;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
 
-
-.logout-container {
-  margin-left: auto; /* Push the logout button to the right */
+.user-avatar:hover {
+    transform: scale(1.1);
 }
 
 .logout-button {
-  margin-left: 20px; /* Space between the menu and logout button */
-  border-radius: 20px; /* Round corners for aesthetic appeal */
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    transition: var(--transition) !important;
 }
 
 .logout-button:hover {
-  background-color: #f02323; /* Light red background on hover */
-}
-  
-/* Back Button Styling */
-.back-button {
-  margin-right: 10px; /* Space between back button and menu */
-  color: #333;
-  transition: color 0.3s ease;
+    color: white !important;
+    background: rgba(255, 255, 255, 0.1) !important;
 }
 
-.back-button:hover {
-  color: #007bff;
+.drawer-header {
+    background: var(--gradient);
+    padding: 24px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.drawer-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.drawer-username {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.drawer-list .MuiListItemIcon-root {
+    color: var(--primary) !important;
+    min-width: 40px !important;
+}
+
+.drawer-list .MuiListItem-root:hover {
+    background: rgba(99, 102, 241, 0.06);
+}
+
+.logout-dialog .dialog-cancel {
+    color: var(--text-muted) !important;
+}
+
+.logout-dialog .dialog-confirm {
+    background: var(--gradient) !important;
+    color: white !important;
+    border-radius: 8px !important;
+    text-transform: none !important;
+}
+
+@media (max-width: 768px) {
+    .dashboard-navbar {
+        padding: 10px 16px;
+    }
+
+    .brand-text {
+        font-size: 1.2rem;
+    }
+
+    .logout-button span:not(.MuiButton-startIcon) {
+        display: none;
+    }
 }

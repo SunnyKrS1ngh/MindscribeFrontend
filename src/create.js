@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { apiFetch } from "./api";
 
 const BlogCreate = () => {
 
@@ -14,10 +15,9 @@ const BlogCreate = () => {
         
         setLoading(true);
 
-        fetch('https://mindscribebackend-tzvh.onrender.com/blogs',{
+        apiFetch('/blogs',{
             method:'POST',
-            headers:{"Content-type":"applications/json"},
-            body: JSON.stringify(blog)
+            body: blog
         }).then(()=>{
             console.log('new blog added');
             setLoading(false);

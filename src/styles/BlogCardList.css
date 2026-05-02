@@ -1,74 +1,139 @@
 .blog-card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 8px;
 }
 
 .blog-card {
-  width: 300px; /* Reducing card width */
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.2s ease;
-  text-decoration: none;
+    position: relative;
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.4s ease-out both;
 }
 
 .blog-card:hover {
-  transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-accent {
+    height: 4px;
+    background: var(--gradient);
+}
+
+.blog-card:hover .card-accent {
+    background: var(--gradient-warm);
 }
 
 .card-content {
-  margin-bottom: 20px;
+    padding: 20px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-public {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.badge-private {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
 
 .blog-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.blog-excerpt {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 12px;
 }
 
 .blog-author {
-  color: #777;
-  font-size: 14px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
 }
 
-.card-icons {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: flex;
-  gap: 10px;
+.card-actions {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 20px;
+    justify-content: flex-end;
 }
 
-.icon {
-  font-size: 18px;
-  cursor: pointer;
-  transition: color 0.2s ease;
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
 }
 
-.icon:hover {
-  color: #007bff;
+.edit-btn {
+    background: rgba(245, 158, 11, 0.1);
+    color: #f59e0b;
 }
 
-.card-icons {
-  display: flex;
-  justify-content: flex-end;
+.edit-btn:hover {
+    background: #f59e0b;
+    color: white;
 }
 
-.icon {
-  margin-left: 10px;
-  cursor: pointer; /* Makes it clear that the icons are clickable */
-  transition: transform 0.2s; /* Add a little hover effect */
+.delete-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
 }
 
-.icon:hover {
-  transform: scale(1.1); /* Slightly increase size on hover */
+.delete-btn:hover {
+    background: #ef4444;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .blog-card-list {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,86 +1,83 @@
 import React, { useState } from 'react';
-import '../styles/EditForm.css'; // Import the CSS for styling
+import '../styles/EditForm.css';
 import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
-import DashboardNavbar from './DashboardNavbar';
+import { IconButton } from '@mui/material';
+import { ArrowBack } from '@mui/icons-material';
+import { apiFetch } from '../api';
 
 const EditForm = () => {
     const location = useLocation();
-    const {blog} = location.state;
+    const { blog } = location.state;
 
     const [title, setTitle] = useState(blog.title || '');
     const [body, setBody] = useState(blog.body || '');
+    const [loading, setLoading] = useState(false);
     const hist = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Assuming handleUpdate is a function that handles the API update logic
-        //handleUpdate({ ...blog, title, body });
+        setLoading(true);
 
-        const postData = {
-            title,
-            body
-          };
-      
-          fetch('https://mindscribebackend-tzvh.onrender.com/edit_post/'+blog._id, {
+        apiFetch('/edit_post/' + blog._id, {
             method: 'PUT',
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(postData)
+            body: { title, body }
         }).then(res => {
-            console.log('Response status:', res.status); // Log status code
             if (!res.ok) {
                 return res.json().then(err => {
-                    console.log('Error:', err.message); // Log the error message
+                    console.log('Error:', err.message);
+                    setLoading(false);
                 });
             } else {
-                return res.json().then(data => {
-                    console.log('Post updated');
-                    hist.push(`/dashboard/${blog.author}`); // Redirect to dashboard
-                });
+                hist.push(`/dashboard/${blog.author}`);
             }
         }).catch(e => {
             console.error('Post error:', e);
+            setLoading(false);
         });
-      
-          // Add your fetch logic to send postData to the server here
-          console.log('Post data submitted:', postData);
-          
     };
 
     return (
-        <div>
-            <DashboardNavbar />
-        <div className="edit-form-container">
-            <h2 className="edit-form-header">Edit Blog Post</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="edit-form-group">
-                    <label className="edit-form-label" htmlFor="title">Title</label>
+        <div className="edit-post-page page-enter">
+            <div className="edit-post-header">
+                <IconButton className="back-btn" onClick={() => hist.goBack()}>
+                    <ArrowBack />
+                </IconButton>
+                <h2>Edit Post</h2>
+            </div>
+
+            <form onSubmit={handleSubmit} className="edit-post-form">
+                <div className="form-group">
+                    <label htmlFor="title">Title</label>
                     <input
                         type="text"
                         id="title"
-                        className="edit-form-input"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         required
                     />
+                    <span className="char-count">{title.length} characters</span>
                 </div>
 
-                <div className="edit-form-group">
-                    <label className="edit-form-label" htmlFor="body">Body</label>
+                <div className="form-group">
+                    <label htmlFor="body">Content</label>
                     <textarea
                         id="body"
-                        className="edit-form-textarea"
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
                         required
-                    ></textarea>
+                    />
+                    <span className="char-count">{body.length} characters</span>
                 </div>
 
-                <div className="edit-form-actions">
-                    <button type="submit" className="edit-form-button">Save Changes</button>
-                    
+                <div className="form-actions">
+                    <button type="button" className="btn-cancel" onClick={() => hist.goBack()}>
+                        Cancel
+                    </button>
+                    <button type="submit" className="btn-submit" disabled={loading || !title.trim() || !body.trim()}>
+                        {loading ? 'Saving...' : 'Save Changes'}
+                    </button>
                 </div>
             </form>
-        </div>
         </div>
     );
 };

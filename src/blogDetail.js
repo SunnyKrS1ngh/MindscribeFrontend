@@ -5,7 +5,7 @@ const BlogDetail = () => {
 
     const {id} = useParams();
 
-    const {blogs,error,loading} = useFetch('https://mindscribebackend-tzvh.onrender.com/blogs/'+id);
+    const {blogs,error,loading} = useFetch('/blogs/'+id);
 
     return ( 
         <div className="blog-details">

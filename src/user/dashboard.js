@@ -1,83 +1,117 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Dashboard.css'; // Import CSS for styling
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { apiFetch } from '../api';
 import DashboardNavbar from './DashboardNavbar';
 import useFetch from '../useFetch';
 import BlogCardList from './BlogCardList';
 import LoadingSpinner from '../misc/loading';
+import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-    const { user } = useParams(); // Access user data from context
-
-    const {data,loading,error} = useFetch('https://mindscribebackend-tzvh.onrender.com/dashboard');
+    const { user } = useParams();
+    const { data, loading, error } = useFetch('/dashboard');
     const [showData, setShowData] = useState(null);
-    const [disabledButton, setDisabledButton] = useState('latest'); // Set initial disabled button (latest or my posts)
+    const [viewMode, setViewMode] = useState('latest');
     const hist = useHistory();
 
     useEffect(() => {
         if (data) {
-            setShowData(data.pub); // Show public posts initially
+            setShowData(data.pub);
         }
     }, [data]);
 
     const handleDelete = (id) => {
-        console.log(id);
-        fetch('https://mindscribebackend-tzvh.onrender.com/delete_post/' + id, {
+        apiFetch('/delete_post/' + id, {
             method: 'DELETE',
-            headers: { "Content-Type": "application/json" },
         }).then(res => {
-            console.log('Response status:', res.status); // Log status code
             if (!res.ok) {
-                return res.json().then(err => {
-                    console.log('Error:', err.message); // Log the error message
-                });
+                return res.json().then(err => console.log('Error:', err.message));
             } else {
-                return res.json().then(() => {
-                    console.log('Post deleted');
-                    window.location.reload();
-                });
+                window.location.reload();
             }
-        }).catch(e => {
-            console.error('Post error:', e);
-        });
+        }).catch(e => console.error('Post error:', e));
     };
 
-    const showMyPosts = () => {
-        setShowData(data.my);
-        setDisabledButton('my'); // Disable the "My posts" button
-    };
-
-    const showLatestPosts = () => {
-        setShowData(data.pub);
-        setDisabledButton('latest'); // Disable the "Latest posts" button
+    const handleViewChange = (event, newValue) => {
+        if (newValue !== null) {
+            setViewMode(newValue);
+            if (newValue === 'my') {
+                setShowData(data.my);
+            } else {
+                setShowData(data.pub);
+            }
+        }
     };
 
     return (
-        <div>
+        <div className="dashboard-page page-enter">
             <DashboardNavbar user={user} />
 
-            <div className="button-group">
-                <button
-                    className='button'
-                    onClick={showMyPosts}
-                    disabled={disabledButton === 'my'} // Disable "My posts" button if it's already selected
-                >
-                    My posts
-                </button>
-                <button
-                    className='button button-secondary'
-                    onClick={showLatestPosts}
-                    disabled={disabledButton === 'latest'} // Disable "Latest posts" button if it's already selected
-                >
-                    Latest posts
-                </button>
-            </div>
+            <div className="dashboard-content">
+                <div className="dashboard-header">
+                    <h1 className="dashboard-greeting">Welcome back, <span className="username-highlight">{user}</span></h1>
+                    <p className="dashboard-subtitle">Your personal writing space awaits</p>
+                </div>
 
-            <div className='blog-list'>
-                {loading && <LoadingSpinner />}
-                {error && <div>{error}</div>}
+                {data && (
+                    <div className="stats-row">
+                        <div className="stat-card">
+                            <div className="stat-icon stat-total">
+                                <span>{data.my.length + data.pub.length}</span>
+                            </div>
+                            <div className="stat-info">
+                                <span className="stat-label">Total Posts</span>
+                            </div>
+                        </div>
+                        <div className="stat-card">
+                            <div className="stat-icon stat-public">
+                                <span>{data.pub.length}</span>
+                            </div>
+                            <div className="stat-info">
+                                <span className="stat-label">Public</span>
+                            </div>
+                        </div>
+                        <div className="stat-card">
+                            <div className="stat-icon stat-private">
+                                <span>{data.my.length - data.pub.filter(p => data.my.map(m => m._id).includes(p._id)).length}</span>
+                            </div>
+                            <div className="stat-info">
+                                <span className="stat-label">Private</span>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
-                {showData && <BlogCardList blogs={showData} handleDelete={handleDelete} latest={disabledButton}/>}
+                <div className="view-toggle">
+                    <ToggleButtonGroup
+                        value={viewMode}
+                        exclusive
+                        onChange={handleViewChange}
+                        className="toggle-group"
+                    >
+                        <ToggleButton value="latest" className="toggle-btn">
+                            Latest Posts
+                        </ToggleButton>
+                        <ToggleButton value="my" className="toggle-btn">
+                            My Posts
+                        </ToggleButton>
+                    </ToggleButtonGroup>
+                </div>
+
+                <div className="blog-list">
+                    {loading && <LoadingSpinner />}
+                    {error && <div className="error-state">Something went wrong. Please try again.</div>}
+                    {showData && showData.length === 0 && (
+                        <div className="empty-state">
+                            <p>No posts yet.</p>
+                            <button className="empty-cta" onClick={() => hist.push(`/addpost/${user}`)}>
+                                Create your first post
+                            </button>
+                        </div>
+                    )}
+                    {showData && showData.length > 0 && <BlogCardList blogs={showData} handleDelete={handleDelete} viewMode={viewMode} />}
+                </div>
             </div>
         </div>
     );

@@ -1,47 +1,70 @@
 import React from 'react';
-import { FaTrashAlt, FaEdit, FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
-import '../styles/BlogCardList.css'; // Add your styles here
+import { FaTrashAlt, FaEdit } from 'react-icons/fa';
+import { LockOutlined, PublicOutlined } from '@mui/icons-material';
+import '../styles/BlogCardList.css';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const BlogCardList = ({ blogs, handleDelete ,latest}) => {
-  const hist = useHistory();
+const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+};
 
-  const onCardClick = (id) => {
-    hist.push('/blog/' + id);
-  };
+const truncate = (text, length) => {
+    if (text.length <= length) return text;
+    return text.substring(0, length).trim() + '...';
+};
 
-  const handleEdit = (blog, e) => {
-    e.stopPropagation(); // Prevent the card click event from firing
-    hist.push({
-      pathname: `/edit/${blog._id}`,
-      state: { blog }
-    });
-  };
+const BlogCardList = ({ blogs, handleDelete, viewMode }) => {
+    const hist = useHistory();
 
-  const handleDeleteClick = (blogId, e) => {
-    e.stopPropagation(); // Prevent the card click event from firing
-    handleDelete(blogId);
-    console.log('button pressed');
-  };
+    const onCardClick = (id) => {
+        hist.push('/blog/' + id);
+    };
 
-  return (
-    <div className="blog-card-list">
-      {blogs.map((blog, index) => (
-        <div className="blog-card" key={index} onClick={() => onCardClick(blog._id)}>
-          <div className="card-content">
-            <h2 className="blog-title">{blog.title}</h2>
-            <p className="blog-author">By {blog.author}</p>
-          </div>
-          <div className="card-icons">
-            {latest==='my'&&<FaEdit className="icon" onClick={(e) => handleEdit(blog, e)} />} {/* Call handleEdit with blog data */}
-            {latest==='my'&&<FaTrashAlt className="icon" onClick={(e) => handleDeleteClick(blog._id, e)} />}
-            {latest==='latest'&&<FaThumbsUp className="icon" />} {/* Assuming you have a handleLike function */}
-            {latest==='latest'&&<FaThumbsDown className="icon" />} {/* Assuming you have a handleDislike function */}
-          </div>
+    const handleEdit = (blog, e) => {
+        e.stopPropagation();
+        hist.push({
+            pathname: `/edit/${blog._id}`,
+            state: { blog }
+        });
+    };
+
+    const handleDeleteClick = (blogId, e) => {
+        e.stopPropagation();
+        handleDelete(blogId);
+    };
+
+    return (
+        <div className="blog-card-list">
+            {blogs.map((blog, index) => (
+                <div className="blog-card" key={blog._id || index} onClick={() => onCardClick(blog._id)} style={{ animationDelay: `${index * 0.05}s` }}>
+                    <div className="card-accent"></div>
+                    <div className="card-content">
+                        <div className="card-header">
+                            <span className={`card-badge ${blog.private ? 'badge-private' : 'badge-public'}`}>
+                                {blog.private ? <LockOutlined fontSize="small" /> : <PublicOutlined fontSize="small" />}
+                                {blog.private ? 'Private' : 'Public'}
+                            </span>
+                            <span className="card-date">{formatDate(blog.createdAt)}</span>
+                        </div>
+                        <h2 className="blog-title">{blog.title}</h2>
+                        <p className="blog-excerpt">{truncate(blog.body, 120)}</p>
+                        <p className="blog-author">By {blog.author}</p>
+                    </div>
+                    {viewMode === 'my' && (
+                        <div className="card-actions">
+                            <button className="action-btn edit-btn" onClick={(e) => handleEdit(blog, e)} title="Edit">
+                                <FaEdit />
+                            </button>
+                            <button className="action-btn delete-btn" onClick={(e) => handleDeleteClick(blog._id, e)} title="Delete">
+                                <FaTrashAlt />
+                            </button>
+                        </div>
+                    )}
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 
 export default BlogCardList;
