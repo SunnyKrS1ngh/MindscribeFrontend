@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import Navbar from './navbar';
 import Home from './home/home';
-import BlogCreate from './create';
-import BlogDetail from './blogDetail';
 import NotFound from './notfound';
 import LandingPage from './home/LandingPage';
 import SignInForm from './auth/SignInForm';
